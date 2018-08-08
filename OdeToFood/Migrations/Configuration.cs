@@ -11,7 +11,7 @@ namespace OdeToFood.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(OdeToFoodDb context)
@@ -26,7 +26,7 @@ namespace OdeToFood.Migrations
                     Country = "Sweden",
                     Reviews = new List<RestaurantReview>
                     {
-                        new RestaurantReview { Rating = 9, Body = "Great food!"}
+                        new RestaurantReview { Rating = 9, Body = "Great food!", ReviewerName = "Arun"}
                     }
                 }
                 );
