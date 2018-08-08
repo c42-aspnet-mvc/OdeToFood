@@ -35,9 +35,12 @@
             @Html.DisplayFor(modelItem => item.Country)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+            <!-- observe we should use this overload with "linkText, action, controller, routeParam, htmlAttribute (set to null)"
+            omitting null as last param will instead result in "linkText, action, routeParam, htmlAttribute" that would not point to ReviewControler -->
+            @Html.ActionLink("Reviews", "Index", "Review", new { id = item.Id }, null) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }
