@@ -11,9 +11,11 @@ namespace OdeToFood.Controllers
     {
         OdeToFoodDb _db = new OdeToFoodDb();
 
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm = null)
         {
-            var model = _db.Restaurants.ToList();
+            var model = _db.Restaurants
+                    .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
+                    .ToList();
 
             return View(model);
         }
