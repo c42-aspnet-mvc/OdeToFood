@@ -42,9 +42,25 @@ namespace OdeToFood.Controllers
             return View(review);
         }
 
-        public ActionResult Edit(int restaurantId)
+        [HttpGet]
+        public ActionResult Edit(int id)
         {
-            return View();
+            var model = _db.Reviews.Find(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit([Bind(Exclude="ReviewerName")] RestaurantReview review)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Entry(review).State = System.Data.EntityState.Modified;
+                _db.SaveChanges();
+                return RedirectToAction("Index", new { id = review.RestaurantId });
+            }
+
+            return View(review);
         }
 
         protected override void Dispose(bool disposing)
