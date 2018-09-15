@@ -24,6 +24,29 @@ namespace OdeToFood.Controllers
             return View(restaurant);
         }
 
+        public ActionResult Create(int restaurantId)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(RestaurantReview review)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Reviews.Add(review);
+                _db.SaveChanges();
+                return RedirectToAction("Index", new { id = review.RestaurantId });
+            }
+
+            return View(review);
+        }
+
+        public ActionResult Edit(int restaurantId)
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (_db != null)
