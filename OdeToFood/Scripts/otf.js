@@ -17,11 +17,21 @@
         return false;
     };
 
+    var submitAutoCompleteForm = function (event, ui) {
+        var $input = $(this);
+
+        $input.val(ui.item.label);
+
+        var $submitForm = $input.parents("form:first");
+        $submitForm.submit();
+    };
+
     var attachAutoComplete = function () {
         var $input = $(this);
 
         var options = {
-            source: $input.attr("data-otf-autocomplete")
+            source: $input.attr("data-otf-autocomplete"),
+            select: submitAutoCompleteForm
         };
 
         $input.autocomplete(options);
