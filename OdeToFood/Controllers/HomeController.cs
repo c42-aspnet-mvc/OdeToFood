@@ -15,7 +15,17 @@ namespace OdeToFood.Controllers
         {
             var model = _db.Restaurants
                     .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
-                    .ToList();
+                    .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+                    .Take(10)
+                    .Select(r =>
+                        new RestaurantViewModel
+                        {
+                            Id = r.Id,
+                            Name = r.Name,
+                            City = r.City,
+                            Country = r.Country,
+                            CountOfReviews = r.Reviews.Count()
+                        });
 
             if (Request.IsAjaxRequest())
             {
