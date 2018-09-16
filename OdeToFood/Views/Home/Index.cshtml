@@ -6,7 +6,7 @@
 
 <form method="get" action="@Url.Action("Index")"
       data-otf-ajax="true" data-otf-target="#restaurantList">
-        <input type="search" name="searchTerm" />
+        <input type="search" name="searchTerm" data-otf-autocomplete="@Url.Action("AutoComplete")"/>
         <input type="submit" name="name" value="Search by name" />
     </form>
 

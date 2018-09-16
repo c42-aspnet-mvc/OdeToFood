@@ -17,5 +17,16 @@
         return false;
     };
 
+    var attachAutoComplete = function () {
+        var $input = $(this);
+
+        var options = {
+            source: $input.attr("data-otf-autocomplete")
+        };
+
+        $input.autocomplete(options);
+    };
+
     $("form[data-otf-ajax='true']").submit(ajaxFormSubmit);
+    $("input[data-otf-autocomplete").each(attachAutoComplete);
 });
