@@ -10,7 +10,13 @@
 
         $.ajax(options).done(function (data) {
             var $target = $($form.attr("data-otf-target"));
-            $target.replaceWith(data);
+            var $newHtml = $(data);
+
+            // refresh the restaurant listing div
+            $target.replaceWith($newHtml);
+
+            // highlight the newly added html
+            $newHtml.effect("highlight");
         });
 
         // prevent browser from navigating away following form submit
