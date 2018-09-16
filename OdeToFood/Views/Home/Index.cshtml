@@ -4,12 +4,13 @@
     ViewBag.Title = "Home Page";
 }
 
-@*<form method="get">
+<form method="get" action="@Url.Action("Index")"
+      data-otf-ajax="true" data-otf-target="#restaurantList">
         <input type="search" name="searchTerm" />
         <input type="submit" name="name" value="Search by name" />
-    </form>*@
+    </form>
 
-@using (Ajax.BeginForm(new AjaxOptions
+@*@using (Ajax.BeginForm(new AjaxOptions
 {
     HttpMethod = "get",
     InsertionMode = InsertionMode.Replace,
@@ -18,6 +19,6 @@
 {
     <input type="search" name="searchTerm" />
     <input type="submit" name="name" value="Search by name" />
-}
+}*@
 
 @Html.Partial("_Restaurants")
