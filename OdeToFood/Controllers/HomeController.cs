@@ -17,6 +17,11 @@ namespace OdeToFood.Controllers
                     .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
                     .ToList();
 
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Restaurants", model);
+            }
+
             return View(model);
         }
 
